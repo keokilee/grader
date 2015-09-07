@@ -1,13 +1,30 @@
 'use strict';
 
+let ThemeManager = new mui.Styles.ThemeManager();
+let AppBar = mui.AppBar;
+
 // counter starts at 0
 Session.setDefault('counter', 0);
 
 let Counter = React.createClass({
   mixins: [ReactMeteorData],
+  componentWillMount() {
+    ThemeManager.setTheme(ThemeManager.types.LIGHT);
+  },
+
   getMeteorData() {
     return {
       counter: Session.get('counter')
+    };
+  },
+
+  childContextTypes: {
+    muiTheme: React.PropTypes.object
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
     };
   },
 
@@ -17,10 +34,7 @@ let Counter = React.createClass({
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleClick}>Click Me</button>
-        <p>You've pressed the button {this.data.counter} times.</p>
-      </div>
+      <AppBar title="Gradr"></AppBar>
     );
   }
 });

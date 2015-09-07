@@ -1,21 +1,17 @@
 'use strict';
 
-let ThemeManager = new mui.Styles.ThemeManager();
-let AppBar = mui.AppBar;
+const {Router, Route} = ReactRouter;
+const {history} = ReactRouter.lib.HashHistory;
+
+let ThemeManager = new MUI.Styles.ThemeManager();
+let AppBar = MUI.AppBar;
 
 // counter starts at 0
 Session.setDefault('counter', 0);
 
 let Main = React.createClass({
-  mixins: [ReactMeteorData],
   componentWillMount() {
     ThemeManager.setTheme(ThemeManager.types.LIGHT);
-  },
-
-  getMeteorData() {
-    return {
-      counter: Session.get('counter')
-    };
   },
 
   childContextTypes: {
@@ -28,15 +24,11 @@ let Main = React.createClass({
     };
   },
 
-  handleClick() {
-    Session.set('counter', Session.get('counter') + 1);
-  },
-
   render() {
     return (
       <div>
         <AppBar title="grades" showMenuIconButton={false}></AppBar>
-        <Home />
+        {this.props.children}
         <footer>
           <h1>Stuff</h1>
         </footer>
@@ -46,5 +38,11 @@ let Main = React.createClass({
 });
 
 Meteor.startup(() => {
-  React.render(<Main />, document.getElementById('content'));
+  React.render((
+    <Router history={history}>
+      <Route component={Main}>
+        <Route path="/" component={Home}></Route>
+      </Route>
+    </Router>
+  ), document.body);
 });

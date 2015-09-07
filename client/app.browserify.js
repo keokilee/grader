@@ -1,4 +1,2 @@
-React = require('react');
-mui = require('material-ui');
-
-require('react-tap-event-plugin')();
+// Apparently, this file can't be empty.
+1 + 1;

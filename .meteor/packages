@@ -20,3 +20,6 @@ cosmos:browserify
 
 
 npm-container
+reactrouter:react-router
+accounts-password
+izzilab:material-ui

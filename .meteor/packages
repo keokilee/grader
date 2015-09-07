@@ -15,11 +15,13 @@ session
 logging
 react
 static-html
-meteorhacks:npm
-cosmos:browserify
 
 
-npm-container
 reactrouter:react-router
 accounts-password
 izzilab:material-ui
+cosmos:browserify
+meteorhacks:npm
+
+
+npm-container

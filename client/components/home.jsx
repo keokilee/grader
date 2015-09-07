@@ -1,4 +1,9 @@
+let RaisedButton = MUI.RaisedButton;
+const { Navigation } = ReactRouter;
+
 Home = React.createClass({
+  mixins: [Navigation],
+
   styles: {
     hero: {
       background: 'url(/images/background.jpg)',
@@ -16,8 +21,16 @@ Home = React.createClass({
       marginBottom: '20px'
     },
     subtitle: {
-      fontSize: '1.5rem'
+      fontSize: '1.5rem',
+      marginBottom: '20px'
+    },
+    button: {
+      marginLeft: '30px'
     }
+  },
+
+  teacherLogin() {
+    this.transitionTo('teachers');
   },
 
   render() {
@@ -28,6 +41,8 @@ Home = React.createClass({
           <h2 style={this.styles.subtitle}>
             Check your current grades. Find out when they change.
           </h2>
+          <RaisedButton label="Student login" primary={true} />
+          <RaisedButton style={this.styles.button} label="Teacher login" secondary={true} onClick={this.teacherLogin}/>
         </div>
       </div>
     );

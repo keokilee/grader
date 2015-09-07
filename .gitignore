@@ -1,4 +1,3 @@
 node_modules/
-packages/
 
-client/app.browserify.js.*
+client/lib/app.browserify.js.*

@@ -10,6 +10,20 @@ let AppBar = MUI.AppBar;
 Session.setDefault('counter', 0);
 
 let Main = React.createClass({
+  render() {
+    return (
+      <div>
+        <AppBar title="grades" showMenuIconButton={false}></AppBar>
+        {this.props.children}
+        <footer>
+          <h1>Footer</h1>
+        </footer>
+      </div>
+    );
+  }
+});
+
+let AppRoutes = React.createClass({
   componentWillMount() {
     ThemeManager.setTheme(ThemeManager.types.LIGHT);
   },
@@ -23,26 +37,18 @@ let Main = React.createClass({
       muiTheme: ThemeManager.getCurrentTheme()
     };
   },
-
   render() {
     return (
-      <div>
-        <AppBar title="grades" showMenuIconButton={false}></AppBar>
-        {this.props.children}
-        <footer>
-          <h1>Stuff</h1>
-        </footer>
-      </div>
+      <Router history={history}>
+        <Route component={Main}>
+          <Route path="/" component={Home}></Route>
+          <Route path="teachers" component={TeacherDashboard}></Route>
+        </Route>
+      </Router>
     );
   }
 });
 
 Meteor.startup(() => {
-  React.render((
-    <Router history={history}>
-      <Route component={Main}>
-        <Route path="/" component={Home}></Route>
-      </Route>
-    </Router>
-  ), document.body);
+  React.render(<AppRoutes />, document.body);
 });

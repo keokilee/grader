@@ -6,7 +6,7 @@ let AppBar = mui.AppBar;
 // counter starts at 0
 Session.setDefault('counter', 0);
 
-let Counter = React.createClass({
+let Main = React.createClass({
   mixins: [ReactMeteorData],
   componentWillMount() {
     ThemeManager.setTheme(ThemeManager.types.LIGHT);
@@ -46,5 +46,5 @@ let Counter = React.createClass({
 });
 
 Meteor.startup(() => {
-  React.render(<Counter />, document.getElementById('content'));
+  React.render(<Main />, document.getElementById('content'));
 });

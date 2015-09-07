@@ -1,0 +1,11 @@
+{
+  "cas": {
+    "relaxSSL": true
+  },
+  "public": {
+    "cas": {
+      "baseUrl": "https://cas-test.its.hawaii.edu/",
+      "serviceParam": "service"
+    }
+  }
+}

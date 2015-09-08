@@ -3,8 +3,8 @@
 const {Router, Route} = ReactRouter;
 const {history} = ReactRouter.lib.HashHistory;
 
+const { AppBar } = MUI;
 let ThemeManager = new MUI.Styles.ThemeManager();
-let AppBar = MUI.AppBar;
 
 // counter starts at 0
 Session.setDefault('counter', 0);
@@ -14,10 +14,12 @@ let Main = React.createClass({
     return (
       <div>
         <AppBar title="grades" showMenuIconButton={false}></AppBar>
-        {this.props.children}
-        <footer>
-          <h1>Footer</h1>
-        </footer>
+        <div className="container">
+          {this.props.children}
+          <footer>
+            <h1>Footer</h1>
+          </footer>
+        </div>
       </div>
     );
   }
@@ -42,7 +44,10 @@ let AppRoutes = React.createClass({
       <Router history={history}>
         <Route component={Main}>
           <Route path="/" component={Home}></Route>
-          <Route path="teachers" component={TeacherDashboard}></Route>
+          <Route path="teachers">
+            <Route path="dashboard" component={TeacherDashboard}></Route>
+            <Route path="login" component={TeacherLogin}></Route>
+          </Route>
         </Route>
       </Router>
     );

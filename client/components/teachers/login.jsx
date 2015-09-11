@@ -12,7 +12,7 @@ TeacherLogin = React.createClass({
 
   componentDidMount() {
     // Check if we already have a user.
-    if (Meteor.user()) {
+    if (this.data.currentUser) {
       this.transitionTo('teachers/dashboard');
     }
   },

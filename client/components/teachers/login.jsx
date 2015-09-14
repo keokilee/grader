@@ -3,6 +3,11 @@ const { Navigation } = ReactRouter;
 
 TeacherLogin = React.createClass({
   mixins: [ ReactCSS.mixin, ReactMeteorData, Navigation ],
+  getInitialState() {
+    return {
+      errors: ""
+    }
+  },
 
   getMeteorData() {
     return {
@@ -27,12 +32,16 @@ TeacherLogin = React.createClass({
         login: {
           margin: '30px auto',
           padding: '15px 10px',
-          maxWidth: '300px',
+          maxWidth: '400px',
           textAlign: 'center'
         },
         submit: {
           textAlign: 'right',
-          marginTop: '10px'
+          marginTop: '15px'
+        },
+        errors: {
+          color: 'red',
+          paddingBottom: '10px'
         }
       }
     }
@@ -47,8 +56,14 @@ TeacherLogin = React.createClass({
   },
 
   login() {
+    this.setState({errors: ""});
+
     Meteor.loginWithPassword(this.state.email, this.state.password, err => {
-      console.log(Meteor.user());
+      if (err) {
+        this.setState({errors: "Your email and/or password is incorrect."});
+      } else {
+        this.transitionTo('teachers/dashboard');
+      }
     });
   },
 
@@ -64,6 +79,9 @@ TeacherLogin = React.createClass({
             <TextField floatingLabelText="Password" type="password" onChange={this.updatePassword} />
           </div>
           <div style={this.css().submit}>
+            <p style={this.css().errors}>
+              {this.state.errors ? this.state.errors : ""}
+            </p>
             <RaisedButton label="Log In" primary={true} onClick={this.login} />
           </div>
         </form>

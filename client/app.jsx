@@ -13,7 +13,9 @@ let Main = React.createClass({
   render() {
     return (
       <div>
-        <AppBar title="grades" showMenuIconButton={false}></AppBar>
+        <AppBar title="grades"
+                showMenuIconButton={false}
+                iconElementRight={<Logout hasUser={!!Meteor.user()}/>}></AppBar>
         <div className="container">
           {this.props.children}
           <footer>

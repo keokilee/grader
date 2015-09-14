@@ -50,13 +50,13 @@ table {
 
 body {
   font-family: 'Roboto', sans-serif;
-	font-size: 16px;
 }
 
 .container {
 	margin: 0 8px;
+	font-size: 16px;
 }
 
-h1 {
+.container h1 {
 	font-size: 1.5rem;
 }
